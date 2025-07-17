@@ -1,32 +1,41 @@
 package org.koreait.product.entities;
 
+import jakarta.persistence.*;
 import lombok.Data;
 import org.koreait.file.entities.FileInfo;
 import org.koreait.global.entities.BaseEntity;
 import org.koreait.product.constants.ProductStatus;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.List;
 
 @Data
-@Table("PRODUCT")
+@Entity
+@Table(indexes = {
+    @Index(name = "idx_product_created_at", columnList = "createdAt DESC")
+})
 public class Product extends BaseEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long seq;
+
+    @Column(nullable = false, length = 45)
     private String gid;
+
+    @Column(nullable = false, length = 100)
     private String name;
+
+    @Column(length = 50)
     private String category;
+
+    @Enumerated(EnumType.STRING)
     private ProductStatus status;
 
-    @Column("consumerPrice")
     private int consumerPrice;
 
-    @Column("salePrice")
     private int salePrice;
 
+    @Lob
     private String description;
 
     @Transient
