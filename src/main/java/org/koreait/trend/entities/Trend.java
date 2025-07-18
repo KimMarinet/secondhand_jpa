@@ -3,7 +3,6 @@ package org.koreait.trend.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.koreait.global.entities.BaseEntity;
-import org.springframework.data.annotation.Id;
 
 @Data
 @Entity

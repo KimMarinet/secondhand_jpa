@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.koreait.admin.product.controllers.RequestProduct;
 import org.koreait.file.services.FileInfoService;
 import org.koreait.global.search.ListData;
-import org.koreait.product.constants.ProductStatus;
+import org.koreait.global.search.Pagination;
 import org.koreait.product.controllers.ProductSearch;
 import org.koreait.product.entities.Product;
 import org.koreait.product.entities.QProduct;
@@ -15,13 +15,17 @@ import org.koreait.product.exceptions.ProductNotFoundException;
 import org.koreait.product.repositories.ProductRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.util.List;
+
+import static org.springframework.data.domain.Sort.Order.desc;
 
 @Lazy
 @Service
@@ -107,7 +111,20 @@ public class ProductInfoService {
 
         /* 판매가, 소비자가 검색 처리 E */
 
-        return null;
+        /* 페이징 처리 S */
+
+        Pageable pageable = PageRequest.of(page - 1, limit, Sort.by(desc("createdAt")));
+        Page<Product> data = repository.findAll(andBuilder, pageable);
+        List<Product> items = data.getContent();
+        long total = data.getTotalElements();
+
+        /* 페이징 처리 E */
+
+        items.forEach(this::addInfo); // 추가 정보 처리
+
+        Pagination pagination = new Pagination(page, (int)total, 10, limit, request);
+
+        return  new ListData<>(items, pagination);
     }
 
     /**
@@ -122,26 +139,5 @@ public class ProductInfoService {
         item.setListImages(fileInfoService.getList(gid, "list"));
         item.setEditorImages(fileInfoService.getList(gid, "editor"));
         /* 업로드한 파일 처리 E */
-    }
-
-    private Product mapper(ResultSet rs, int i) throws SQLException {
-        Product item = new Product();
-        item.setSeq(rs.getLong("seq"));
-        item.setGid(rs.getString("gid"));
-        item.setName(rs.getString("name"));
-        item.setCategory(rs.getString("category"));
-        item.setStatus(ProductStatus.valueOf(rs.getString("status")));
-        item.setConsumerPrice(rs.getInt("consumerPrice"));
-        item.setSalePrice(rs.getInt("salePrice"));
-        item.setDescription(rs.getString("description"));
-        item.setCreatedAt(rs.getTimestamp("createdAt").toLocalDateTime());
-
-        Timestamp modifiedAt = rs.getTimestamp("modifiedAt");
-        Timestamp deletedAt = rs.getTimestamp("deletedAt");
-
-        item.setModifiedAt(modifiedAt == null ? null : modifiedAt.toLocalDateTime());
-        item.setDeletedAt(deletedAt == null ? null : deletedAt.toLocalDateTime());
-
-        return item;
     }
 }

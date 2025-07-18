@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.koreait.global.entities.BaseEntity;
 import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.Id;
 
 @Data
 @Entity
@@ -12,7 +11,7 @@ import org.springframework.data.annotation.Id;
         @Index(name = "idx_fileinfo_gid1", columnList = "gid, createdAt"),
         @Index(name = "idx_fileinfo_gid2", columnList = "gid, done, createdAt"),
         @Index(name = "idx_fileinfo_location1", columnList = "gid, location, createdAt"),
-        @Index(name = "idx_fileinfo_location1", columnList = "gid, location, done, createdAt"),
+        @Index(name = "idx_fileinfo_location1", columnList = "gid, location, done, createdAt")
 })
 public class FileInfo extends BaseEntity {
     @Id

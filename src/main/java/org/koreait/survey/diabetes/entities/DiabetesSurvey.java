@@ -6,7 +6,6 @@ import org.koreait.global.constants.Gender;
 import org.koreait.global.entities.BaseEntity;
 import org.koreait.member.entities.Member;
 import org.koreait.survey.diabetes.constants.SmokingHistory;
-import org.springframework.data.annotation.Id;
 
 @Data
 @Entity
