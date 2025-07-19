@@ -8,6 +8,7 @@
         <meta name="csrf_header" th:content="${_csrf.headerName}">
         <meta name="keywords" th:content="${@utils.keywords()}">
         <meta name="description" th:content="${@utils.description()}">
+
         <link rel="stylesheet" type="text/css" th:href="@{/common/css/style.css?v={v}(v=${@utils.version()})}">
         <link rel="stylesheet" type="text/css" th:each="cssFile : ${addCommonCss}"
               th:href="@{/common/css/{css}.css?v={v}(css=${cssFile}, v=${@utils.version()})}">
@@ -17,6 +18,9 @@
         <link rel="stylesheet" type="text/css" th:each="cssFile : ${addCss}"
               th:href="@{/front/css/{css}.css?v={v}(css=${cssFile}, v=${@utils.version()})}">
         <th:block layout:fragment="addCss"></th:block>
+
+        <link rel="stylesheet" type="text/css" th:href="@{/front/css/outlines/footer/style.css?v={v}(v=${@utils.version()})}">
+        <link rel="stylesheet" type="text/css" th:href="@{/front/css/outlines/header/style.css?v={v}(v=${@utils.version()})}">
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script th:src="@{/common/js/common.js?v={v}(v=${@utils.version()})}"></script>

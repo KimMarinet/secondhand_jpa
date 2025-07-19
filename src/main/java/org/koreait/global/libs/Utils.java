@@ -148,7 +148,6 @@ public class Utils {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         url = StringUtils.hasText(url) ? url : request.getContextPath() + "/common/images/no_image.jpg";
 
         return String.format("<img src='%s' class='%s%s'>", url, "image-" + seq,StringUtils.hasText(addClass)? " " + addClass : "");

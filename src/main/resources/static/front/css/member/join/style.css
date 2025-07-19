@@ -1,0 +1,26 @@
+.join-template{
+    margin: 25px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.join-container {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  max-width: 360px;
+  text-align: center;
+}
+
+.join-container ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.btn-join{
+    margin: 15px 0px;
+}

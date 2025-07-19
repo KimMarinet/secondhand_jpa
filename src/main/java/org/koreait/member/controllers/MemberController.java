@@ -126,7 +126,7 @@ public class MemberController {
             pageTitle = utils.getMessage("회원가입");
 
         } else if (mode.equals("login")) { // 로그인 공통 처리
-            pageTitle = utils.getMessage("로그인");
+            pageTitle = utils.getMessage("Login");
         }
 
         model.addAttribute("addCommonScript", addCommonScript);
