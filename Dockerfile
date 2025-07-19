@@ -1,3 +1,9 @@
+FROM kimmarinet/ubuntu:1.0.0
+ARG JAR_PATH=build/libs/secondhand-0.0.1-SNAPSHOT.jar
+ARG PORT=3000
+COPY ${JAR_PATH} app.jar
+RUN mkdir uploads
+
 ENV SPRING_PROFILES_ACTIVE=default,prod
 ENV DB_URL=**
 ENV DB_PASSWORD=**
