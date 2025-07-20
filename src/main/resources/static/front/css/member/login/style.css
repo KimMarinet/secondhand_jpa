@@ -1,3 +1,15 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #fff;
+  align-items: center;
+}
+
 h1 {
   margin-bottom: 25px;
   font-size: 32px;
@@ -25,4 +37,70 @@ h1 {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.login-form input:focus {
+  border-color: #0077cc;
+  outline: none;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-form ul li .autologin{
+    width: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.login-form ul li .autologin input{
+    width: auto;
+    margin-right: 3px;
+}
+
+.login-form ul li .autologin label{
+    line-height: 1;
+}
+
+.login-form .login_btn{
+    margin: 10px 0px;
+}
+
+.login-form .join_btn{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 3px;
+}
+
+.btn-link {
+  font-size: 14px;
+    color: #999;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.btn-link:hover {
+  color: #666;
+    text-decoration: underline;
 }
