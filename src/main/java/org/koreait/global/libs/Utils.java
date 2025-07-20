@@ -178,7 +178,7 @@ public class Utils {
 
     public String getUrl(String url){
         String protocol = request.getScheme(); // http, https, ftp ...
-        String domain = request.getServerName();
+        String domain = request.getHeader("Host");
         int _port = request.getServerPort();
         String port = (List.of(80, 443).contains(_port)) ? "" : ":"+_port;
 
